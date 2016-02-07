@@ -3868,39 +3868,39 @@ namespace PetaPoco
 
 
     /* 
-	Thanks to Adam Schroder (@schotime) for this.
-	
-	This extra file provides an implementation of DbProviderFactory for early versions of the Oracle
-	drivers that don't include include it.  For later versions of Oracle, the standard OracleProviderFactory
-	class should work fine
-	
-	Uses reflection to load Oracle.DataAccess assembly and in-turn create connections and commands
-	
-	Currently untested.
-	
-	Usage:   
-		
-			new PetaPoco.Database("<connstring>", new PetaPoco.OracleProvider())
-	
-	Or in your app/web config (be sure to change ASSEMBLYNAME to the name of your 
-	assembly containing OracleProvider.cs)
-	
-		<connectionStrings>
-			<add
-				name="oracle"
-				connectionString="WHATEVER"
-				providerName="Oracle"
-				/>
-		</connectionStrings>
+    Thanks to Adam Schroder (@schotime) for this.
+    
+    This extra file provides an implementation of DbProviderFactory for early versions of the Oracle
+    drivers that don't include include it.  For later versions of Oracle, the standard OracleProviderFactory
+    class should work fine
+    
+    Uses reflection to load Oracle.DataAccess assembly and in-turn create connections and commands
+    
+    Currently untested.
+    
+    Usage:   
+        
+            new PetaPoco.Database("<connstring>", new PetaPoco.OracleProvider())
+    
+    Or in your app/web config (be sure to change ASSEMBLYNAME to the name of your 
+    assembly containing OracleProvider.cs)
+    
+        <connectionStrings>
+            <add
+                name="oracle"
+                connectionString="WHATEVER"
+                providerName="Oracle"
+                />
+        </connectionStrings>
 
-		<system.data>
-			<DbProviderFactories>
-				<add name="PetaPoco Oracle Provider" invariant="Oracle" description="PetaPoco Oracle Provider" 
-								type="PetaPoco.OracleProvider, ASSEMBLYNAME" />
-			</DbProviderFactories>
-		</system.data>
+        <system.data>
+            <DbProviderFactories>
+                <add name="PetaPoco Oracle Provider" invariant="Oracle" description="PetaPoco Oracle Provider" 
+                                type="PetaPoco.OracleProvider, ASSEMBLYNAME" />
+            </DbProviderFactories>
+        </system.data>
 
-	 */
+     */
 
     public class OracleProvider : DbProviderFactory
     {
@@ -5325,9 +5325,9 @@ namespace PetaPoco
                         Func<object, object> converter = mapper.GetFromDbConverter((PropertyInfo) null, srcType);
 
                         /*
-						if (ForceDateTimesToUtc && converter == null && srcType == typeof(DateTime))
-							converter = delegate(object src) { return new DateTime(((DateTime)src).Ticks, DateTimeKind.Utc); };
-						 */
+                        if (ForceDateTimesToUtc && converter == null && srcType == typeof(DateTime))
+                            converter = delegate(object src) { return new DateTime(((DateTime)src).Ticks, DateTimeKind.Utc); };
+                         */
 
                         // Setup stack for call to converter
                         AddConverterToStack(il, converter);
